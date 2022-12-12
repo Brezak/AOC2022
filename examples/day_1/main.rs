@@ -1,11 +1,7 @@
 use AOC2022::get_input;
 
 fn part_1(input: Vec<Vec<i64>>) {
-    let max: i64 = input
-        .iter()
-        .map(|elf| elf.iter().sum())
-        .max()
-        .unwrap();
+    let max: i64 = input.iter().map(|elf| elf.iter().sum()).max().unwrap();
 
     println!("Max Elf: {max}");
 }
