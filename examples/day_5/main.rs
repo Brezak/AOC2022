@@ -52,7 +52,7 @@ fn parse_header<'a>(input: &mut impl Iterator<Item = &'a str>) -> HashMap<u8, Ve
     let mut header: HashMap<u8, Vec<char>> = HashMap::new();
     let mut header_lines = vec![];
 
-    for x in input.by_ref() {
+    for x in input {
         if x.is_empty() {
             break;
         };

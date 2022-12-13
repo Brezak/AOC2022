@@ -1,5 +1,5 @@
-use std::iter::Take;
 use itertools::Itertools;
+use std::iter::Take;
 use AOC2022::get_input;
 
 type ParsedInput = String;
@@ -10,14 +10,18 @@ fn is_tuple_all_different(a: (char, char, char, char)) -> bool {
 
 fn part_1(input: ParsedInput) {
     // Can't be used for part 2 because tuple windows only goes up to 12 elements, we need 14
-    for (index, tuple) in input.chars().tuple_windows().enumerate().map(|(n, y)| (n + 4, y)) {
+    for (index, tuple) in input
+        .chars()
+        .tuple_windows()
+        .enumerate()
+        .map(|(n, y)| (n + 4, y))
+    {
         if is_tuple_all_different(tuple) {
             println!("{index}");
             break;
         }
     }
 }
-
 
 fn part_2(input: ParsedInput) {
     const WINDOW_SIZE: usize = 14;

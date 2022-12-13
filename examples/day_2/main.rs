@@ -71,11 +71,7 @@ impl Ord for Symbols {
 fn parse(input: String) -> Vec<(Symbols, Symbols)> {
     let mut sum = Vec::new();
 
-    for data in input
-        .lines()
-        .filter(|x| !x.is_empty())
-        .map(str::as_bytes)
-    {
+    for data in input.lines().filter(|x| !x.is_empty()).map(str::as_bytes) {
         let left = match data[0] {
             b'A' => Symbols::Rock,
             b'B' => Symbols::Paper,
