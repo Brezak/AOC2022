@@ -1,5 +1,6 @@
 use reqwest::header::COOKIE;
 use std::env::args;
+use std::fmt::Display;
 use std::fs;
 use std::path::Path;
 
@@ -31,4 +32,22 @@ pub fn get_input_with_session_id(day: u8, session_id: String) -> String {
     fs::write(target_file, &text).expect("Failed to write to file");
 
     text
+}
+
+pub fn print_iterator_as_array<I, T>(iter: I)
+where
+    I: IntoIterator<Item = T>,
+    T: Display,
+{
+    let mut printed_first = false;
+    print!("[");
+    for i in iter {
+        if printed_first {
+            print!(", ");
+        }
+
+        printed_first = true;
+        print!("{i}");
+    }
+    println!("]");
 }
