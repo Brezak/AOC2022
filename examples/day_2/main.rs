@@ -72,7 +72,7 @@ fn parse(input: String) -> Vec<(Symbols, Symbols)> {
     let mut sum = Vec::new();
 
     for data in input
-        .split('\n')
+        .lines()
         .filter(|x| !x.is_empty())
         .map(str::as_bytes)
     {

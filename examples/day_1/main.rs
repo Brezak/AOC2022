@@ -17,7 +17,7 @@ fn parse(input: String) -> Vec<Vec<i64>> {
     let mut collector = Vec::new();
     let mut total = Vec::new();
 
-    for i in input.split('\n') {
+    for i in input.lines() {
         if i.is_empty() {
             let temp = collector;
             collector = Vec::new();

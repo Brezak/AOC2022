@@ -47,13 +47,16 @@ fn get_intersection(parts: &[(Vec<u8>, Vec<u8>)]) -> u8 {
 }
 
 fn part_2(input: ParsedInput) {
-    let sum: u64 = input.chunks_exact(3).map(get_intersection).map(|common| {
-        if common.is_ascii_lowercase() {
-            (common - b'a' + 1) as u64
-        } else {
-            (common - b'A' + 27) as u64
-        }
-    })
+    let sum: u64 = input
+        .chunks_exact(3)
+        .map(get_intersection)
+        .map(|common| {
+            if common.is_ascii_lowercase() {
+                (common - b'a' + 1) as u64
+            } else {
+                (common - b'A' + 27) as u64
+            }
+        })
         .sum();
 
     println!("{sum}");
@@ -61,7 +64,7 @@ fn part_2(input: ParsedInput) {
 
 fn parse(input: String) -> ParsedInput {
     input
-        .split('\n')
+        .lines()
         .filter(|x| !x.is_empty())
         .map(|s| {
             let (left, right) = s.as_bytes().split_at(s.len() / 2);

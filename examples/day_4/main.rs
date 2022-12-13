@@ -1,4 +1,3 @@
-use std::collections::HashSet;
 use std::ops::RangeInclusive;
 use AOC2022::get_input;
 
@@ -9,7 +8,10 @@ fn is_subrange(a: &RangeInclusive<u64>, b: &RangeInclusive<u64>) -> bool {
 }
 
 fn part_1(input: ParsedInput) {
-    let occurrences = input.into_iter().filter(|(left, right)| is_subrange(left, right) || is_subrange(right, left)).count();
+    let occurrences = input
+        .into_iter()
+        .filter(|(left, right)| is_subrange(left, right) || is_subrange(right, left))
+        .count();
 
     println!("{occurrences}");
 }
@@ -19,30 +21,39 @@ fn overlaps(a: &RangeInclusive<u64>, b: &RangeInclusive<u64>) -> bool {
 }
 
 fn part_2(input: ParsedInput) {
-    let occurrences = input.into_iter().filter(|(left, right)| overlaps(left, right)).count();
+    let occurrences = input
+        .into_iter()
+        .filter(|(left, right)| overlaps(left, right))
+        .count();
 
     println!("{occurrences}");
 }
 
 fn parse(input: String) -> ParsedInput {
     input
-        .split('\n')
+        .lines()
         .filter(|x| !x.is_empty())
         .map(|s| {
             let (left, right) = s.split_once(',').unwrap();
-            let left = left.split_once('-').map(|(start, end)| {
-                let start = start.parse().unwrap();
-                let end = end.parse().unwrap();
+            let left = left
+                .split_once('-')
+                .map(|(start, end)| {
+                    let start = start.parse().unwrap();
+                    let end = end.parse().unwrap();
 
-                start..=end
-            }).unwrap();
+                    start..=end
+                })
+                .unwrap();
 
-            let right = right.split_once('-').map(|(start, end)| {
-                let start = start.parse().unwrap();
-                let end = end.parse().unwrap();
+            let right = right
+                .split_once('-')
+                .map(|(start, end)| {
+                    let start = start.parse().unwrap();
+                    let end = end.parse().unwrap();
 
-                start..=end
-            }).unwrap();
+                    start..=end
+                })
+                .unwrap();
 
             (left, right)
         })
